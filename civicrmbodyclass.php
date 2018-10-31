@@ -73,6 +73,9 @@ class plgSystemCivicrmbodyclass extends JPlugin {
       if (strpos($task, 'civicrm') !== false) {
         // Create the new class name from the task URL argument
         $class = 'page-' . str_replace('/', '-', $task);
+        // Angular pages don't get a meaningful class name but this at least
+        // makes it consistent with Drupal by removing the trailing hyphen
+        $class = preg_replace('/-a-$/', '-a', $class);
       } else {
         // In the case of the dashboard there might be no task argument in the URL
         $class = 'page-civicrm';

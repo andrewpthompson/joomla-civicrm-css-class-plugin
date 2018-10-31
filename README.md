@@ -8,3 +8,5 @@ Idea is from: https://lab.civicrm.org/dev/core/issues/300
 Also see: https://github.com/civicrm/org.civicrm.shoreditch/issues/238
 
 Why the body and not .crm-container? See https://github.com/civicrm/org.civicrm.shoreditch/issues/136
+
+The plugin would be installed in the standard Joomla manner. For example download the files and put them in zip file (at the top level, not within a folder) and Extensions > Manage > Install, then Upload Package File.

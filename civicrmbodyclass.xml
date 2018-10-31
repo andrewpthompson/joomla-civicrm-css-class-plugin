@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension method="upgrade" version="1.0" type="plugin" group="system">
+	<name>CiviCRM Body Class</name>
+	<author>CiviCRM, LLC</author>
+	<creationDate>October 2018</creationDate>
+	<copyright>Copyright (C) 2005 - 2014 CiviCRM. All rights reserved.</copyright>
+	<license>GNU Affero General Public License version 2 or later</license>
+	<authorEmail>info@civicrm.org</authorEmail>
+	<authorUrl>www.civicrm.org</authorUrl>
+	<version>1.0.0</version>
+	<description>Adds CSS classes to body element</description>
+	<files>
+		<filename plugin="civicrmbodyclass">civicrmbodyclass.php</filename>
+		<filename>index.html</filename>
+	</files>
+</extension>

@@ -97,7 +97,6 @@ class plgSystemCivicrmbodyclass extends JPlugin {
       // did not work reliably - it broke some of CiviCRM's inline scripts.
       // QueryPath or PHPQuery could be alternatives but were not tested.
       $html = preg_replace('/<body(.*)(class=("|\')[^("|\')]*)/', "<body$1$2 $newClasses", $html);
-      $html .= $task;
 
       // Write the modified HTML to the CMS
       $app->setBody($html);

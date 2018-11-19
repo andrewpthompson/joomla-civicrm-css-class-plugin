@@ -69,17 +69,25 @@ class plgSystemCivicrmbodyclass extends JPlugin {
     $task = $app->input->get('task', '', 'PATH');
     $option = $app->input->get('option', '', 'STRING');
 
+
     if ($option == 'com_civicrm') {
       if (strpos($task, 'civicrm') !== false) {
         // Create the new class name from the task URL argument
-        $class = 'page-' . str_replace('/', '-', $task);
-        // Angular pages don't get a meaningful class name but this at least
-        // makes it consistent with Drupal by removing the trailing hyphen
-        $class = preg_replace('/-a-$/', '-a', $class);
+        $task_array = explode('/', $task);
+        $currentClass = "page"; // Prefix for class names is 'page-'
+        $newClasses = "";
+        foreach ($task_array as $fragment) {
+          // Angular pages don't get a meaningful class name but this behaviour
+          // is consistent with CiviCRM on Drupal
+          if ($fragment) {
+            $currentClass .= "-$fragment";
+            $newClasses .= " $currentClass";
+          }
+        }
       }
       else {
         // In the case of the dashboard there might be no task argument in the URL
-        $class = 'page-civicrm';
+        $newClasses = 'page-civicrm';
       }
 
       // Use preg_replace to add the new class to the existing body class
@@ -88,7 +96,8 @@ class plgSystemCivicrmbodyclass extends JPlugin {
       // already; this is determined by the template. Note: PHP's DOMDocument
       // did not work reliably - it broke some of CiviCRM's inline scripts.
       // QueryPath or PHPQuery could be alternatives but were not tested.
-      $html = preg_replace('/<body(.*)(class=("|\')[^("|\')]*)/', "<body$1$2 $class", $html);
+      $html = preg_replace('/<body(.*)(class=("|\')[^("|\')]*)/', "<body$1$2 $newClasses", $html);
+      $html .= $task;
 
       // Write the modified HTML to the CMS
       $app->setBody($html);
